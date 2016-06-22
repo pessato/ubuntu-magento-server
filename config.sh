@@ -1,3 +1,5 @@
+# From magenx https://github.com/magenx/Magento-nginx-config
+
 NGINX_EXTRA_CONF="error_page.conf extra_protect.conf export.conf hhvm.conf headers.conf maintenance.conf multishop.conf pagespeed.conf spider.conf"
 NGINX_EXTRA_CONF_URL="https://raw.githubusercontent.com/magenx/nginx-config/master/magento/conf.d/"
 
@@ -44,12 +46,13 @@ done
   # edit www.conf
   sed -i.bak 's/listen = \/var\/run\/php5-fpm.sock/listen = 9000/g' /etc/php5/fpm/pool.d/www.conf
 
+# Restart everything
+
 nginx_dissite default.conf
 nginx_dissite magento.conf
 
 nginx_ensite default.conf
 nginx_ensite magento.conf
 
-# Restart everything
 service php5-fpm restart
 service nginx restart
